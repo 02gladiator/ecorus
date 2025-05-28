@@ -1,0 +1,19 @@
+// Цвета
+$primary-color: #07C88E;
+$primary-color-dark: #06b780;
+$secondary-color: #f2f2f2;
+$text-color: #333;
+$background-color: #ffffff;
+
+// Шрифты
+$font-main: 'Roboto', sans-serif;
+
+// Размеры
+$container-width: 1200px;
+$border-radius: 8px;
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}

@@ -1,0 +1,33 @@
+.footer {
+  padding: 2rem 0;
+  color: $text-color;
+  font-size: 0.95rem;
+}
+
+.contacts {
+  @extend .container;
+  display: flex;
+  gap: 1rem;
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  a {
+    color: $text-color;
+    text-decoration: none;
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+  fill: $primary-color;
+}
+

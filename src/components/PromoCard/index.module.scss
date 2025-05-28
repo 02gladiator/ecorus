@@ -1,0 +1,63 @@
+.card {
+  width: 565px;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 2rem;
+  border: $secondary-color solid 1px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+
+  h3 {
+    font-size: 1.5rem;
+    color: $text-color;
+  }
+
+  p {
+    margin-top: 0.5rem;
+    color: #333;
+    font-size: 1rem;
+    max-width: 90%;
+  }
+}
+.text {
+  z-index: 2;
+}
+
+.image {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  max-height: 100%;
+  max-width: 50%;
+  object-fit: contain;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.button {
+  width: 40px;
+  height: 40px;
+  background-color: $secondary-color;
+  border: none;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s;
+
+  svg {
+    width: 20px;
+    height: 20px;
+    color: #000;
+  }
+
+  &:hover {
+    background-color: darken($secondary-color, 10%);
+  }
+}

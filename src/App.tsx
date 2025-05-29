@@ -8,7 +8,7 @@ function App() {
 
     return (
         <>
-            <Header token={"null"}></Header>
+            <Header token={null}></Header>
             <Routes>
                 <Route path="/" element={<HomePage/>}/>
             </Routes>

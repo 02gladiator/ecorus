@@ -1,0 +1,45 @@
+.card {
+  width: 384px;
+  height: 392px;
+  background: white;
+  border-radius: 1rem;
+  border: $secondary-color solid 1px;
+  padding: 2rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.name {
+  font-weight: 600;
+  font-size: 18px;
+  text-align: center;
+}
+
+.email {
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+}
+
+.editBtn {
+  width: 320px;
+  height: 56px;
+  margin-top: auto;
+  padding: 0.75rem 1.5rem;
+  background-color: $secondary-color;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  cursor: pointer;
+}

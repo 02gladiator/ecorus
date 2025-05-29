@@ -1,5 +1,7 @@
 import {NavLink, Link} from 'react-router-dom';
 import styles from './index.module.scss';
+import {useState} from "react";
+import {AuthModal} from "../AuthModal";
 
 interface HeaderProps {
     token: string | null;
@@ -7,6 +9,10 @@ interface HeaderProps {
 }
 
 export const Header = ({token, points}: HeaderProps) => {
+    const [isAuthModalOpen, setAuthModalOpen] = useState(false);
+
+    const handleOpenModal = () => setAuthModalOpen(true);
+    const handleCloseModal = () => setAuthModalOpen(false);
     return (
         <header className={styles.header}>
             <div className={styles.container}>
@@ -55,7 +61,7 @@ export const Header = ({token, points}: HeaderProps) => {
                         <span className={styles.cityName}>Казань</span>
                     </div>
                     {token ? (
-                        <div  className={styles.profile}>
+                        <div className={styles.profile}>
                             <img src="/src/assets/score.svg" alt="Баллы"/>
                             <div className={styles.balance}>{points ?? 0}</div>
                             <Link to="/profile" className={styles.profileBtn}>Профиль</Link>
@@ -63,11 +69,14 @@ export const Header = ({token, points}: HeaderProps) => {
                     ) : (
                         <div className={styles.item}>
                             <img src="/src/assets/login.svg" alt="Логин"/>
-                            <Link to="/login" className={styles.loginBtn}>Войти</Link>
+                            <button onClick={handleOpenModal} className={styles.loginBtn}>
+                                Войти
+                            </button>
                         </div>
                         )}
                 </div>
             </div>
+            <AuthModal isOpen={isAuthModalOpen} onClose={handleCloseModal}/>
         </header>
 
     );

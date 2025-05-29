@@ -1,0 +1,16 @@
+.page {
+  padding-top: 60px;
+  padding-bottom: 60px;
+  @extend .container
+}
+
+.title {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+.content {
+  display: flex;
+  gap: 40px;
+}

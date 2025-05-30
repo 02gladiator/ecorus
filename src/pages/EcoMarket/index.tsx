@@ -1,8 +1,76 @@
 import React, { useState } from 'react';
 import styles from './index.module.scss';
+import productImage from '../../assets/DSC06454.jpg';
+import {ProductCard} from "../../components/ProductCard";
 
 export const EcoMarketPage: React.FC = () => {
     const [sort, setSort] = useState<'popular' | 'price' | 'new'>('popular');
+
+    const mockProducts = [
+        {
+            image: productImage,
+            brand: 'Nike',
+            title: 'Air Zoom Alpha',
+            type: 'Мужская обувь',
+            price: 1500,
+        },
+        {
+            image: productImage,
+            brand: 'Adidas',
+            title: 'Ultraboost 22',
+            type: 'Женская обувь',
+            price: 1300,
+        },
+        {
+            image: productImage,
+            brand: 'Reebok',
+            title: 'Classic Leather',
+            type: 'Универсальная обувь',
+            price: 1100,
+        },
+        {
+            image: productImage,
+            brand: 'Nike',
+            title: 'Air Zoom Alpha',
+            type: 'Мужская обувь',
+            price: 1500,
+        },
+        {
+            image: productImage,
+            brand: 'Adidas',
+            title: 'Ultraboost 22',
+            type: 'Женская обувь',
+            price: 1300,
+        },
+        {
+            image: productImage,
+            brand: 'Reebok',
+            title: 'Classic Leather',
+            type: 'Универсальная обувь',
+            price: 1100,
+        },
+        {
+            image: productImage,
+            brand: 'Nike',
+            title: 'Air Zoom Alpha',
+            type: 'Мужская обувь',
+            price: 1500,
+        },
+        {
+            image: productImage,
+            brand: 'Adidas',
+            title: 'Ultraboost 22',
+            type: 'Женская обувь',
+            price: 1300,
+        },
+        {
+            image: productImage,
+            brand: 'Reebok',
+            title: 'Classic Leather',
+            type: 'Универсальная обувь',
+            price: 1100,
+        },
+    ];
 
     return (
         <div className={styles.page}>
@@ -35,6 +103,9 @@ export const EcoMarketPage: React.FC = () => {
                 </aside>
 
                 <section className={styles.products}>
+                    {mockProducts.map((product, index) => (
+                        <ProductCard key={index} {...product} />
+                    ))}
                 </section>
             </div>
         </div>

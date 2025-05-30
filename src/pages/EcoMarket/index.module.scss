@@ -1,0 +1,75 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 40px 0;
+  @extend .container;
+  height: 796px;
+}
+
+.sidebar {
+  width: 282px;
+  height: 545px;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.resetBtn {
+  margin-top: auto;
+  padding: 10px 16px;
+  background-color: $secondary-color;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.products {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.sort {
+  display: flex;
+  gap: 12px;
+
+  button {
+    width: 159px;
+    height: 40px;
+    padding: 8px 14px;
+    background: $secondary-color;
+    border: none;
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .active {
+    background-color: #060E21;
+    color: #fff;
+  }
+}
+
+.content {
+  display: flex;
+  gap: 40px;
+}

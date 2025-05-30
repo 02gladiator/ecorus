@@ -1,0 +1,53 @@
+.card {
+  width: 768px;
+  height: 222px;
+  background: #fff;
+  border-radius: 12px;
+  border: solid $secondary-color 1px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.points {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+  font-weight: 600;
+
+  img {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 600px;
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.label {
+  font-size: 14px;
+  color: #888;
+}
+
+.value {
+  font-size: 16px;
+  font-weight: 450;
+  color: #333;
+}

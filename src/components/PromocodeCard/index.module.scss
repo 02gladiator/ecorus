@@ -2,13 +2,13 @@
   width: 768px;
   height: 110px;
   background: #fff;
-  border-radius: 12px;
   display: flex;
   align-items: center;
   padding: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   gap: 20px;
   position: relative;
+  border-bottom: 1px solid $secondary-color;
 }
 
 .imageWrapper {

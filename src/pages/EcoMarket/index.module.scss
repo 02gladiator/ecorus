@@ -30,10 +30,13 @@
 }
 
 .products {
+  height: 600px;
   flex: 1;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 20px;
+  overflow-y: scroll;
+  scrollbar-width: thin;
 }
 
 .topBar {

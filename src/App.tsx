@@ -9,6 +9,7 @@ import {CollectionPointsPage} from "./pages/CollectionPoints";
 
 function App() {
     const location = useLocation();
+    const hideFooterOnRoutes = ['/points'];
 
     return (
         <>
@@ -21,7 +22,7 @@ function App() {
                     <Route path="/points" element={<CollectionPointsPage />} />
                 </Routes>
             </AnimatePresence>
-            <Footer />
+            {!hideFooterOnRoutes.includes(location.pathname) && <Footer />}
         </>
     );
 }

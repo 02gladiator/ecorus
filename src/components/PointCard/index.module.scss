@@ -1,0 +1,51 @@
+@import '@/styles/variables';
+
+.card {
+  width: 384px;
+  height: 110px;
+  display: flex;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  &:hover {
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+}
+
+.active {
+  border-color: $primary-color;
+  background-color: rgba($primary-color, 0.08);
+}
+
+.imageWrapper {
+  margin-left: 1rem;
+  width: 110px;
+  height: 110px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+.info {
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  flex-grow: 1;
+}
+
+.address {
+  font-weight: 600;
+  font-size: 15px;
+  color: #333;
+}
+
+.materials {
+  font-size: 14px;
+  color: #777;
+}

@@ -4,7 +4,7 @@ import styles from './index.module.scss';
 interface CollectionPointCardProps {
     image: string;
     address: string;
-    materials: string;
+    materials: string[];
     active?: boolean;
     onClick?: () => void;
 }
@@ -16,6 +16,7 @@ export const CollectionPointCard: React.FC<CollectionPointCardProps> = ({
                                                                             active = false,
                                                                             onClick,
                                                                         }) => {
+
     return (
         <div
             className={`${styles.card} ${active ? styles.active : ''}`}
@@ -26,7 +27,7 @@ export const CollectionPointCard: React.FC<CollectionPointCardProps> = ({
             </div>
             <div className={styles.info}>
                 <p className={styles.address}>{address}</p>
-                <p className={styles.materials}>{materials}</p>
+                <p className={styles.materials}>{materials.join(",")}</p>
             </div>
         </div>
     );

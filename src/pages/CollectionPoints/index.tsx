@@ -66,6 +66,7 @@ export const CollectionPointsPage: React.FC = () => {
     const [selectedStores, setSelectedStores] = useState<string[]>([]);
     const [selectedMaterials, setSelectedMaterials] = useState<string[]>([]);
     const [searchQuery, setSearchQuery] = useState('');
+    const [isMobileListOpen, setIsMobileListOpen] = useState(false);
 
     const filteredPoints = mockPoints.filter((point) => {
         const storeMatch =
@@ -155,6 +156,37 @@ export const CollectionPointsPage: React.FC = () => {
                     )}
                 </div>
             </div>
+            {!activePointId && (
+                <button
+                    className={styles.showListBtn}
+                    onClick={() => setIsMobileListOpen(true)}
+                >
+                    Показать пункты сбора
+                </button>
+            )}
+            {isMobileListOpen && (
+                <div className={styles.mobileModal}>
+                    <div className={styles.modalHeader}>
+                        <span>Пункты сбора</span>
+                        <button className={styles.closeButton} onClick={() => setIsMobileListOpen(false)}>Закрыть</button>
+                    </div>
+                    <div className={styles.pointsList}>
+                        {filteredPoints.map((point) => (
+                            <CollectionPointCard
+                                key={point.id}
+                                image={point.image}
+                                address={point.address}
+                                materials={point.materials}
+                                active={point.id === activePointId}
+                                onClick={() => {
+                                    setActivePointId(point.id);
+                                    setIsMobileListOpen(false);
+                                }}
+                            />
+                        ))}
+                    </div>
+                </div>
+            )}
         </main>
     );
 }

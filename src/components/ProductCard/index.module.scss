@@ -7,12 +7,25 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 768px) {
+    width: 343px;
+    height: 371px;
+    border-radius: 10px;
+  }
 }
 
 .imageWrapper {
   position: relative;
   width: 270px;
   height: 270px;
+
+  @media (max-width: 768px) {
+    width: 343px;
+    height: 270px;
+    aspect-ratio: 1 / 1;
+
+  }
 
   .image {
     width: 100%;
@@ -30,6 +43,11 @@
     font-weight: 500;
     border-radius: 6px;
     color: #333;
+
+    @media (max-width: 768px) {
+      font-size: 11px;
+      padding: 3px 6px;
+    }
   }
 }
 
@@ -40,14 +58,27 @@
   gap: 6px;
   flex-grow: 1;
 
+  @media (max-width: 768px) {
+    padding: 10px 12px;
+    gap: 4px;
+  }
+
   .title {
     font-size: 16px;
     font-weight: 500;
+
+    @media (max-width: 768px) {
+      font-size: 15px;
+    }
   }
 
   .type {
     font-size: 14px;
     color: #666;
+
+    @media (max-width: 786px) {
+      font-size: 13px;
+    }
   }
 
   .price {
@@ -60,6 +91,15 @@
     img {
       width: 24px;
       height: 24px;
+    }
+
+    @media (max-width: 786px) {
+      font-size: 14px;
+
+      img {
+        width: 20px;
+        height: 20px;
+      }
     }
   }
 }

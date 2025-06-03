@@ -21,18 +21,21 @@
   display: flex;
   align-items: flex-start;
   pointer-events: none;
+
   > * {
     pointer-events: auto;
   }
 }
 
 .sidebar {
+  display: block;
   margin-top: 7rem;
   width: 410px;
   height: 763px;
   border-radius: 12px;
   overflow-y: scroll;
   scroll-behavior: smooth;
+
   &::-webkit-scrollbar {
     width: 6px;
   }
@@ -47,4 +50,65 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+}
+
+
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+  .showListBtn {
+    width: 100%;
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: $text-color;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 24px;
+    font-size: 16px;
+    z-index: 9;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .mobileModal {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-height: 80%;
+    background: white;
+    border-radius: 16px 16px 0 0;
+    padding: 1rem;
+    z-index: 9;
+    animation: slideUp 0.3s ease;
+    overflow-y: auto;
+  }
+
+  .modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-weight: bold;
+  }
+  .closeButton{
+    color: $text-color;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 24px;
+    font-size: 16px;
+    z-index: 999;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0%);
+    }
+  }
 }

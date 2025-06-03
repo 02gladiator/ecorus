@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import styles from './index.module.scss';
 import bg1 from "../../assets/bg1.jpg"
 import bg2 from "../../assets/bg2.jpg"
@@ -27,6 +27,9 @@ const slides = [
 
 export const Slider = () => {
     const [current, setCurrent] = useState(0);
+    const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+    const isMobile = window.innerWidth <= 768;
 
     const prevSlide = () => {
         setCurrent((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
@@ -35,6 +38,21 @@ export const Slider = () => {
     const nextSlide = () => {
         setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
     };
+    const resetAutoScroll = () => {
+        if (intervalRef.current) clearInterval(intervalRef.current);
+        if (isMobile) {
+            intervalRef.current = setInterval(nextSlide, 5000);
+        }
+    };
+
+    useEffect(() => {
+        if (isMobile) {
+            intervalRef.current = setInterval(nextSlide, 5000);
+        }
+        return () => {
+            if (intervalRef.current) clearInterval(intervalRef.current);
+        };
+    }, []);
 
     return (
         <div className={styles.sliderWrapper}>
@@ -43,7 +61,7 @@ export const Slider = () => {
                     <div
                         key={index}
                         className={`${styles.slide} ${index === current ? styles.active : ''}`}
-                        style={{backgroundImage: `url(${slide.image})`}}
+                        style={{ backgroundImage: `url(${slide.image})` }}
                     >
                         <div className={styles.content}>
                             <h2>{slide.title}</h2>
@@ -53,11 +71,24 @@ export const Slider = () => {
                     </div>
                 ))}
             </div>
-            <button className={`${styles.arrow} ${styles.left}`} onClick={prevSlide}>
-                <img src="/src/assets/Arrows.svg"/>
+
+            <button
+                className={`${styles.arrow} ${styles.left}`}
+                onClick={() => {
+                    prevSlide();
+                    resetAutoScroll();
+                }}
+            >
+                <img src="/src/assets/Arrows.svg" />
             </button>
-            <button className={`${styles.arrow} ${styles.right}`} onClick={nextSlide}>
-                <img src="/src/assets/Arrows (1).svg"/>
+            <button
+                className={`${styles.arrow} ${styles.right}`}
+                onClick={() => {
+                    nextSlide();
+                    resetAutoScroll();
+                }}
+            >
+                <img src="/src/assets/Arrows (1).svg" />
             </button>
         </div>
     );

@@ -13,7 +13,7 @@ function App() {
 
     return (
         <>
-            <Header token={'null'} />
+            <Header token={"null"} />
             <AnimatePresence mode="wait">
                 <Routes location={location} key={location.pathname}>
                     <Route path="/" element={<HomePage />} />

@@ -4,7 +4,105 @@
   gap: 40px;
   padding: 40px 0;
   @extend .container;
-  height: 796px;
+  position: relative;
+}
+
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.filterBtn {
+  display: none;
+  width: 343px;
+  height: 48px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 1rem;
+  background: $secondary-color;
+  color: $text-color;
+  font-weight: 600;
+  cursor: pointer;
+
+  @media (max-width: 768px) {
+    display: block;
+  }
+}
+
+.sort {
+  display: flex;
+  gap: 12px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  -webkit-overflow-scrolling: touch;
+
+  button {
+    flex: 0 0 auto;
+    width: max-content;
+    white-space: nowrap;
+    padding: 8px 14px;
+    height: 40px;
+    background: $secondary-color;
+    border: none;
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &.active {
+      background-color: #060E21;
+      color: #fff;
+    }
+  }
+
+  &::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+  }
+}
+
+
+.sortDesktop {
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+.sortMobile {
+  display: none;
+
+  @media (max-width: 768px) {
+    display: flex;
+  }
+}
+
+
+.content {
+  display: flex;
+  gap: 40px;
+  flex-direction: row;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 }
 
 .sidebar {
@@ -17,26 +115,23 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
 
-.resetBtn {
-  margin-top: auto;
-  padding: 10px 16px;
-  background-color: $secondary-color;
-  border: none;
-  border-radius: 8px;
-  font-weight: 500;
-  cursor: pointer;
+  @media (max-width: 768px) {
+    display: none;
+  }
 }
 
 .products {
-  height: 600px;
-  flex: 1;
+  width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 20px;
-  overflow-y: scroll;
-  scroll-behavior: smooth;
+  overflow-y: auto;
+  max-height: calc(100vh - 300px);
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fill, minmax(241px, 1fr));
+  }
+
   &::-webkit-scrollbar {
     width: 6px;
   }
@@ -47,40 +142,43 @@
   }
 }
 
-.topBar {
+.filterModal {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 90vh;
+  background: #fff;
+  z-index: 999;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 24px;
+  flex-direction: column;
 }
 
-.title {
-  font-size: 28px;
-  font-weight: 700;
+.filterContent {
+  padding: 20px;
 }
 
-.sort {
-  display: flex;
-  gap: 12px;
-
-  button {
-    width: 159px;
-    height: 40px;
-    padding: 8px 14px;
-    background: $secondary-color;
-    border: none;
-    border-radius: 2rem;
-    cursor: pointer;
-    transition: all 0.3s;
-  }
-
-  .active {
-    background-color: #060E21;
-    color: #fff;
-  }
+.closeBtn {
+  background: none;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  cursor: pointer;
 }
 
-.content {
-  display: flex;
-  gap: 40px;
+.applyBtn {
+  margin-top: 3rem;
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 1rem;
+  background-color: $primary-color;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
 }

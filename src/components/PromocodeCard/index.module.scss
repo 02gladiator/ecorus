@@ -9,6 +9,17 @@
   gap: 20px;
   position: relative;
   border-bottom: 1px solid $secondary-color;
+
+  @media (max-width: 768px) {
+    width: 343px;
+    height: 382px;
+    flex-direction: column;
+    padding: 0;
+    gap: 0;
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+  }
 }
 
 .imageWrapper {
@@ -31,6 +42,20 @@
     font-size: 24px;
     color: white;
     text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+  }
+
+  @media (max-width: 768px) {
+    width: 343px;
+    height: 210px;
+
+    .image {
+      border-radius: 0;
+    }
+
+    .amount {
+      left: 7.8rem;
+      font-size: 32px;
+    }
   }
 }
 
@@ -60,6 +85,18 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+
+  @media (max-width: 768px) {
+    padding: 16px;
+    gap: 8px;
+
+    .link {
+      white-space: normal;
+      overflow: visible;
+      text-overflow: unset;
+      word-break: break-word;
+    }
+  }
 }
 
 .qrBtn {
@@ -72,4 +109,11 @@
   border: none;
   font-size: 14px;
   cursor: pointer;
+
+  @media (max-width: 768px) {
+    width: 343px;
+    height: 40px;
+    position: static;
+    align-self: flex-end;
+  }
 }

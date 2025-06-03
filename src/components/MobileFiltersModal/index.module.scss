@@ -1,0 +1,80 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 99;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.modal {
+  background: #fff;
+  width: 100%;
+  border-radius: 16px 16px 0 0;
+  padding: 24px;
+  max-height: 80vh;
+  overflow-y: auto;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+
+  &.visible {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  h3 {
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-size: 18px;
+    font-weight: 600;
+  }
+}
+
+.section {
+  margin-bottom: 20px;
+
+  p {
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+
+    input {
+      margin-right: 8px;
+      accent-color: #07c88e;
+    }
+  }
+}
+
+.selectAll {
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.closeBtn {
+  width: 100%;
+  padding: 12px;
+  background-color: #07c88e;
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  font-weight: 500;
+}
+.resetBtn {
+  width: 100%;
+  padding: 12px;
+  background-color: #f0f0f0;
+  color: #333;
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}

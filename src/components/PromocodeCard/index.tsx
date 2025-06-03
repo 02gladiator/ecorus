@@ -30,7 +30,6 @@ export const PromocodeCard: React.FC<PromoCardProps> = ({ amount, date, link, ac
                     {link}
                 </a>
             </div>
-
             {active && (
                 <button className={styles.qrBtn}>Показать qr-код</button>
             )}

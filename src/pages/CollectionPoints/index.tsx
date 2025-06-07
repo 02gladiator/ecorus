@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './index.module.scss';
 import {MapContainer, Marker, Popup, TileLayer} from 'react-leaflet';
 import {CollectionPointCard} from "../../components/PointCard";
@@ -8,7 +8,12 @@ import L from 'leaflet';
 import defaultIconUrl from '../../assets/Group 33296.svg';
 import activeIconUrl from '../../assets/Group 33295.svg';
 import image from '../../assets/Frame 2042.jpg';
+import image2 from '../../assets/3bee6002c2c797c664ac18d760fdb66e.jpg';
 import {PointDetailCard} from "../../components/DeteildPointCard";
+import {fetchStorePoints} from '../../api/cities';
+import type {StoreEntity} from "../../types";
+import { useSelector } from 'react-redux';
+import type {RootState} from "../../store";
 
 
 const defaultIcon = new L.Icon({
@@ -56,6 +61,17 @@ const mockPoints = [
         phone: '+7 (999) 123-45-67',
         schedule: 'Пн-Вс: 10:00–20:00',
     },
+    {
+        id: 4,
+        image: image2,
+        address: 'г. Уфа, Чернышевского 160',
+        materials: ['пластик', 'стекло',],
+        latitude: 54.725399,
+        longitude: 55.967593,
+        storeName: 'hm',
+        phone: '+7 (999) 123-45-67',
+        schedule: 'Пн-Вс: 10:00–20:00',
+    }
 ];
 
 
@@ -85,8 +101,14 @@ export const CollectionPointsPage: React.FC = () => {
         return storeMatch && materialMatch && searchMatch;
     });
 
-
-
+    const [points, setPoints] = useState<StoreEntity[]>([]);
+    const cityId = useSelector((state: RootState) => state.city.id);
+    useEffect(() => {
+        if (!cityId) return;
+        fetchStorePoints(cityId)
+            .then(data => setPoints(data))
+            .catch(err => console.error('Ошибка загрузки пунктов:', err))
+    }, [cityId]);
 
     return (
         <main className={styles.page}>
@@ -151,6 +173,15 @@ export const CollectionPointsPage: React.FC = () => {
                                     active={point.id === activePointId}
                                     onClick={() => setActivePointId(point.id)}
                                 />
+                            ))}
+                            {points.map((point) => (
+                                <CollectionPointCard
+                                key={point.id}
+                                image={image}
+                                address={point.address}
+                                materials={["НЕ НАЖИМАТЬ!!!!!!!!!!!!!!!!!!!!!!","ЭТО ДАННЫЕ С БЭКА"]}
+                                active={point.id === activePointId}
+                                onClick={() => setActivePointId(point.id)}/>
                             ))}
                         </div>
                     )}

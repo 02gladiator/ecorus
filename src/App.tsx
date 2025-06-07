@@ -6,14 +6,18 @@ import { ProfilePage } from './pages/Profile';
 import { EcoMarketPage } from './pages/EcoMarket';
 import { AnimatePresence } from 'framer-motion';
 import {CollectionPointsPage} from "./pages/CollectionPoints";
+import {useSelector} from "react-redux";
+import type {RootState} from "./store";
 
 function App() {
     const location = useLocation();
     const hideFooterOnRoutes = ['/points'];
+    const token = useSelector((state: RootState) => state.auth.accessToken);
+    const balance = useSelector((state: RootState) => state.auth.user?.balance);
 
     return (
         <>
-            <Header token={"null"} />
+            <Header token={token} balance={balance}/>
             <AnimatePresence mode="wait">
                 <Routes location={location} key={location.pathname}>
                     <Route path="/" element={<HomePage />} />

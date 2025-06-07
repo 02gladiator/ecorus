@@ -1,8 +1,13 @@
 import React from 'react';
 import styles from './index.module.scss';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
+import {useForm} from 'react-hook-form';
+import {yupResolver} from '@hookform/resolvers/yup';
+import {registration} from "../../../api/auth.ts";
 import * as yup from 'yup';
+import {LanguageEnum} from "../../../types";
+import {useDispatch} from 'react-redux';
+import {loginSuccess} from "../../../store/slices/authSlice.ts";
+
 
 interface RegisterFormProps {
     switchToLogin: () => void;
@@ -12,14 +17,12 @@ interface RegisterFormProps {
 
 
 type RegisterFormData = {
-    name: string;
     email: string;
     password: string;
     confirmPassword: string;
 };
 
 const schema = yup.object().shape({
-    name: yup.string().required('Введите имя'),
     email: yup
         .string()
         .required('Введите email')
@@ -34,22 +37,43 @@ const schema = yup.object().shape({
         .oneOf([yup.ref('password')], 'Пароли не совпадают'),
 });
 
-export const RegisterForm: React.FC<RegisterFormProps> = ({ switchToLogin, onClose, onSuccess }) => {
+export const RegisterForm: React.FC<RegisterFormProps> = ({switchToLogin, onClose, onSuccess}) => {
     const {
         register,
         handleSubmit,
-        formState: { errors },
+        formState: {errors},
         reset,
     } = useForm<RegisterFormData>({
         resolver: yupResolver(schema),
     });
 
-    const onSubmit = (data: RegisterFormData) => {
-        console.log('Регистрация:', data);
-        onSuccess(data.email);
-        reset();
-    }
+    const dispatch = useDispatch();
 
+    const onSubmit = async (data: RegisterFormData) => {
+        try {
+            const response = await registration({
+                email: data.email,
+                password: data.password,
+                language: LanguageEnum.RU
+            });
+            dispatch(
+                loginSuccess({
+                    user: {
+                        id: response.id,
+                        email: response.email,
+                        balance: response.balance,
+                    },
+                    accessToken: response.accessToken,
+                    refreshToken: response.refreshToken,
+                })
+            );
+            onSuccess(data.email);
+            reset();
+        } catch (error) {
+            console.error('Ошибка регистрации:', error);
+            alert('Произошла ошибка при регистрации. Попробуйте ещё раз.');
+        }
+    }
     return (
         <>
             <div className={styles.header}>
@@ -58,14 +82,6 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({ switchToLogin, onClo
             </div>
 
             <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-                <input
-                    type="text"
-                    placeholder="Имя"
-                    {...register('name')}
-                    className={errors.name ? styles.inputError : ''}
-                />
-                {errors.name && <span className={styles.error}>{errors.name.message}</span>}
-
                 <input
                     type="email"
                     placeholder="Email"

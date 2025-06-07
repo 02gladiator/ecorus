@@ -5,6 +5,7 @@
   padding: 40px 0;
   @extend .container;
   position: relative;
+  min-height: 810px;
 }
 
 .topBar {
@@ -127,7 +128,7 @@
   grid-template-columns: 1fr 1fr 1fr;
   gap: 20px;
   overflow-y: auto;
-  max-height: calc(100vh - 300px);
+  max-height: calc(100vh - 316px);
   @media (max-width: 768px) {
     grid-template-columns: repeat(auto-fill, minmax(241px, 1fr));
   }

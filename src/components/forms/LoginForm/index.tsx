@@ -3,6 +3,9 @@ import styles from './index.module.scss';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import {login} from "../../../api/auth.ts";
+import {useDispatch} from "react-redux";
+import {loginSuccess} from "../../../store/slices/authSlice.ts";
 
 interface LoginFormProps {
     switchToRegister: () => void;
@@ -35,10 +38,31 @@ export const LoginForm: React.FC<LoginFormProps> = ({ switchToRegister, onClose 
         resolver: yupResolver(schema),
     });
 
-    const onSubmit = (data: LoginFormData) => {
-        console.log('Login data:', data);
-        onClose();
-        reset();
+    const dispatch = useDispatch();
+
+    const onSubmit = async (data: LoginFormData) => {
+        try {
+            const response = await login({
+                email: data.email,
+                password: data.password,
+            });
+            dispatch(
+                loginSuccess({
+                    user: {
+                        id: response.id,
+                        email: response.email,
+                        balance: response.balance,
+                    },
+                    accessToken: response.accessToken,
+                    refreshToken: response.refreshToken,
+                })
+            );
+            onClose()
+            reset();
+        } catch (error) {
+            console.error('Ошибка входа:', error);
+            alert('Произошла ошибка при логине. Попробуйте ещё раз.');
+        }
     };
 
     return (

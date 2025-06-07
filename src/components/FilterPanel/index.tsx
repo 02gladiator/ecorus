@@ -8,14 +8,14 @@ const allBrands = [
 ];
 
 
-export const FilterPanel: React.FC = () => {
-    const {
-        gender, setGender,
-        types, setTypes,
-        brands, setBrands,
-        resetFilters
-    } = useMarketFilters();
+type FilterPanelProps = ReturnType<typeof useMarketFilters>;
 
+export const FilterPanel: React.FC<FilterPanelProps> = ({
+                                                            gender, setGender,
+                                                            types, setTypes,
+                                                            brands, setBrands,
+                                                            resetFilters,
+                                                        }) => {
     const toggle = <T,>(value: T, list: T[], setList: (v: T[]) => void) => {
         setList(
             list.includes(value)

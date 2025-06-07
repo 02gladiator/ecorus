@@ -33,7 +33,6 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                         switchToRegister={() => setMode('register')}
                     />
                 )}
-
                 {mode === 'register' && (
                     <RegisterForm
                         onClose={onClose}
@@ -44,7 +43,6 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                         }}
                     />
                 )}
-
                 {mode === 'confirm' && (
                     <ConfirmEmailForm
                         email={emailForConfirm}
